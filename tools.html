@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tools & Samples · Trip Expense Splitter</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Dedicated CSS for tools page -->
+  <link rel="stylesheet" href="tools.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="top-nav">
+    <div class="nav-left">
+      <span class="nav-logo-dot"></span>
+      <span class="nav-title">Splitwise‑style Trip Splitter</span>
+    </div>
+    <div class="nav-right">
+      <a href="index.html">Main app</a>
+      <a href="#quick-split">Quick split</a>
+      <a href="#samples">Samples</a>
+    </div>
+  </nav>
+
+  <header class="app-header">
+    <h1>Tools &amp; Sample Trips</h1>
+    <p>Play with quick calculations and see realistic trip examples.</p>
+    <div class="tagline">CALCULATOR • SAMPLE DATA • REAL‑WORLD SCENARIOS</div>
+  </header>
+
+  <main class="container">
+    <!-- Quick Split Calculator -->
+    <section class="panel" id="quick-split">
+      <h2>Quick split calculator</h2>
+      <p class="helper-text">
+        Just want a fast split? Use this mini calculator without saving a full trip.
+      </p>
+      <form id="quick-form">
+        <div class="inline">
+          <input
+            type="number"
+            id="quick-total"
+            placeholder="Total amount (₹)"
+            min="1"
+            step="0.01"
+            required
+          />
+          <input
+            type="number"
+            id="quick-people"
+            placeholder="No. of people"
+            min="1"
+            step="1"
+            required
+          />
+        </div>
+        <div class="inline">
+          <input
+            type="number"
+            id="quick-tip"
+            placeholder="Tip % (optional)"
+            min="0"
+            step="1"
+          />
+          <button type="submit">Calculate</button>
+          <button type="button" id="quick-clear" class="secondary-btn">Clear</button>
+        </div>
+      </form>
+
+      <div class="quick-result" id="quick-result">
+        <p class="empty-state">Enter total + people to see per‑person share.</p>
+      </div>
+    </section>
+
+    <!-- Sample Trips Gallery -->
+    <section class="panel" id="samples">
+      <h2>Sample trips gallery</h2>
+      <p class="helper-text">
+        A few realistic examples showing how people actually use a splitter like this.
+      </p>
+
+      <div class="samples-grid">
+        <!-- Card 1 -->
+        <article class="sample-card" data-trip="goa">
+          <h3>Goa Friends Getaway</h3>
+          <p class="sample-meta">5 friends · 14 expenses · Weekend trip</p>
+          <p class="sample-amount">Total: ₹18,450</p>
+          <p class="sample-tagline">Beach shacks, cabs, club entry, and shared Airbnb.</p>
+          <button type="button" class="sample-btn" data-trip="goa">View mock breakdown</button>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="sample-card" data-trip="roommates">
+          <h3>Roommates Monthly Bills</h3>
+          <p class="sample-meta">3 flatmates · 9 expenses · 1 month</p>
+          <p class="sample-amount">Total: ₹9,200</p>
+          <p class="sample-tagline">Rent top‑up, Wi‑Fi, electricity, gas, and groceries.</p>
+          <button type="button" class="sample-btn" data-trip="roommates">View mock breakdown</button>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="sample-card" data-trip="office">
+          <h3>Office Team Dinner</h3>
+          <p class="sample-meta">8 teammates · 3 expenses · One evening</p>
+          <p class="sample-amount">Total: ₹7,560</p>
+          <p class="sample-tagline">Starters, mains, and app‑ordered cabs home.</p>
+          <button type="button" class="sample-btn" data-trip="office">View mock breakdown</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- Common scenarios -->
+    <section class="panel" id="scenarios">
+      <h2>Common trip scenarios</h2>
+      <p class="helper-text">
+        These are real‑life cases where an app like this saves fights and confusion.
+      </p>
+      <ul class="scenario-list">
+        <li>
+          <strong>Friends’ trip:</strong> Different people pay for fuel, stay, food.
+          A splitter makes sure all those payments end in one clean “who pays whom” list.
+        </li>
+        <li>
+          <strong>Roommates:</strong> Monthly rent, electricity, Wi‑Fi, and cleaning
+          services split fairly even if one person pays the landlord every time.
+        </li>
+        <li>
+          <strong>Office team outings:</strong> One person pays the restaurant, one
+          pays for cabs, and later everyone settles without spreadsheets.
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built by <span class="highlight-name">Akash Kundu</span> · HTML • CSS • JavaScript • LocalStorage</p>
+    <p>Best viewed on mobile &amp; desktop · Deployed via GitHub + Netlify</p>
+  </footer>
+
+  <!-- Modal for mock breakdown -->
+  <div class="modal-backdrop" id="sample-modal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="modal-title">Trip breakdown</h3>
+        <button type="button" class="modal-close" id="modal-close">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <!-- injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <script src="tools.js"></script>
+</body>
+</html>

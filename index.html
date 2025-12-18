@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trip Expense Splitter</title>
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Minimal Navbar -->
+  <nav class="top-nav">
+  <div class="nav-left">
+    <span class="nav-logo-dot"></span>
+    <span class="nav-title">Splitwise‑style Trip Splitter</span>
+  </div>
+  <div class="nav-right">
+    <a href="#trip-panel">Trip</a>
+    <a href="#summary-panel">Summary</a>
+    <a href="tools.html">Tools &amp; Samples</a>
+  </div>
+</nav>
+
+  <header class="app-header">
+    <h1>Trip Expense Splitter</h1>
+    <p>Smart, fair bill splitting for your next trip.</p>
+    <div class="tagline">HTML • CSS • JavaScript • Responsive • LocalStorage</div>
+    <p class="current-trip-line" id="current-trip-line">
+      No trip saved yet. Start by naming your trip below.
+    </p>
+  </header>
+
+  <main class="container">
+    <!-- Trip Overview Panel -->
+    <section class="panel trip-intro" id="trip-panel">
+      <h2>Trip overview</h2>
+      <p class="helper-text">
+        Give this split a name so it looks clean when you share it.
+      </p>
+      <form id="trip-form">
+        <div class="inline">
+          <input
+            type="text"
+            id="trip-name"
+            placeholder="Trip name (e.g. Goa Friends Getaway)"
+          />
+        </div>
+        <div class="inline">
+          <input
+            type="text"
+            id="trip-location"
+            placeholder="Location (e.g. Goa, India)"
+          />
+          <input
+            type="text"
+            id="trip-dates"
+            placeholder="Dates (e.g. Dec 2025)"
+          />
+        </div>
+        <button type="submit">Save trip details</button>
+      </form>
+      <p class="helper-text" id="trip-saved-text">
+        Trip details not saved yet.
+      </p>
+    </section>
+
+    <!-- Friends Panel -->
+    <section class="panel" id="friends-panel">
+      <h2>
+        Friends
+        <span class="badge" id="friends-count-badge">0</span>
+      </h2>
+      <p class="helper-text">Add everyone once. Initials are auto‑generated.</p>
+      <form id="friend-form">
+        <div class="inline">
+          <input type="text" id="friend-name" placeholder="Friend name (e.g. Akash)" required />
+          <button type="submit">+ Add</button>
+        </div>
+      </form>
+      <ul id="friends-list" aria-label="Friends list"></ul>
+      <p class="empty-state" id="friends-empty">No friends yet. Start by adding 2–5 friends.</p>
+    </section>
+
+    <!-- Expenses Panel -->
+    <section class="panel" id="expense-panel">
+      <h2>
+        Expenses
+        <span class="badge" id="expenses-count-badge">0</span>
+      </h2>
+      <p class="helper-text">Log each bill: who paid, how much, and for whom.</p>
+      <form id="expense-form">
+        <input
+          type="text"
+          id="expense-title"
+          placeholder="Title (e.g. Dinner at Park Street)"
+          required
+        />
+        <div class="inline">
+          <input
+            type="number"
+            id="expense-amount"
+            placeholder="Amount (₹)"
+            min="1"
+            step="0.01"
+            required
+          />
+          <select id="expense-payer" required>
+            <option value="">Paid by</option>
+          </select>
+        </div>
+
+        <fieldset class="split-between">
+          <legend>Split between (default: everyone)</legend>
+          <div id="split-friends"></div>
+        </fieldset>
+
+        <button type="submit">Add expense</button>
+      </form>
+
+      <ul id="expenses-list" aria-label="Expenses list"></ul>
+      <p class="empty-state" id="expenses-empty">No expenses yet. Add your first shared bill.</p>
+    </section>
+
+    <!-- Summary Panel -->
+    <section class="panel" id="summary-panel">
+      <h2>
+        Summary
+        <span class="badge">Live</span>
+      </h2>
+
+      <!-- How-to line -->
+      <p class="helper-text">
+        1) Add friends → 2) Add each shared expense → 3) Read who owes whom and how much.
+      </p>
+
+      <!-- Stats row -->
+      <div class="stats-row" id="stats-row">
+        <div class="stat-card">
+          <span class="stat-label">Friends</span>
+          <span class="stat-value" id="stat-friends">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Expenses</span>
+          <span class="stat-value" id="stat-expenses">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Total ₹</span>
+          <span class="stat-value" id="stat-total">0.00</span>
+        </div>
+      </div>
+
+      <div id="summary-totals"></div>
+      <div id="summary-settlements"></div>
+
+      <button id="reset-btn" class="danger">Reset trip data</button>
+      <p class="footer-note">
+        Data stays in <span>this browser</span> only (localStorage). Safe to test and share.
+      </p>
+    </section>
+  </main>
+
+  <!--Footer-->
+    <footer class="site-footer">
+    <p>Built by <span class="highlight-name">Akash Kundu</span> · HTML • CSS • JavaScript • LocalStorage</p>
+    <p>Best viewed on mobile & desktop · Deployed via GitHub + Netlify</p>
+  </footer>
+
+  <!-- External JS -->
+  <script src="script.js"></script>
+</body>
+</html>
